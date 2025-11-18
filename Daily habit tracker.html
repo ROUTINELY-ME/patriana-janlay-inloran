@@ -6,6 +6,59 @@
     <title>Daily Habit Tracker</title>
 </head>
 <body>
+        <h1>Daily Health Habit Tracket 🚀</h1>
+     <div class="container"> 
+        <div class ="add-task-area"> 
+            <input type="text"
+            id="taskInput"
+            placeholder="Add a new habit/task..."
+            /> 
+
+          <button class="primary-btn" onclick="addTask()">Add</button>>
+          </div>
+
+         <ul id="taskList"></ul>
+
+        <div id="progressBar">
+            <div id="progressFill"></div>
+            </div>
+
+            <div class="center">
+                <b>Progress:</b> <span id="progressText">0%</span><br>
+                <b>Streak:</b> <span id="streak">0</span>days
+            </div>
+
+            <button class="primary-btn" onclick="finishDay()">Finish Day & Reset</button>
+
+            </div>
+
+<script>
+    const taskList = document.getElementById("taskList");
+    const taskInput = document.getElementById("taskInput");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    const streakDisplay = document.getElementById("streak");
     
+    // ---Initial Setup---
+
+    //Defualt starting habits (from our Habit Tracker example)
+    const initialHabits = [
+        "Drink 8 glasses of water",
+        "Sleep 8 hours",
+        "Eat fruits/vegetables",
+        "10 minutes of exercise"
+    ];
+
+    //load task from local storage ou use defaults
+    let tasksData = JSON.parse(localStorage.getItem("habits")) || initialHabbits.map(text => ({text, done: false}));
+
+    //load streak from local storage
+    let streak = localStorage.getItem("streak") || 0;
+    streakDisplay.textContent = streak;
+
+    // Render tasks on load
+    renderTasks();
+    updateProgress();
+</script>
 </body>
 </html>
