@@ -107,7 +107,22 @@
             li.className = "habit";
             if (isDone) li.classList.add("done");
 
+//task content area (checkbox and text)
+const taskContent = document.createElement("div");
+taskContent.className = "task-content";
+const checkbox = document.createElement("input");
+checkbox.type = "checkbox";
+checkbox.checked = isDone;
+checkbox.disable = isDone;
+checkbox.addEventListener("change", () => handleCheckChange(index));
 
+const taskSpan = document.createElement("span");
+taskSpan.className = "task-text";
+taskSpan.textContent = taskText;
+
+taskContent.appendChild(checkbox);
+taskContent.appendChild(taskSpan);
+li.appendChild(taskContent);
                
         }
     
