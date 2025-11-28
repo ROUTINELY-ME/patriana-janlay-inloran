@@ -155,9 +155,30 @@ function createButton(text, onClickHandler, isDisabled){
         renderTasks();
         updateProgress();
     }
-    
+    // Function to handle the "Finish Day & Reset" button
+    function finishDay() {
+        const total = tasksData.length;
+        let completed = 0;
+        tasksData.forEach(task => {
+            if (task.done) completed++;
+        });
 
-    
+        const allChecked = completed === total && total >0;
+
+        if (allChecked){
+            streak++;
+            localStorage.setItem("streak", streak);
+            streakDisplay.textContent = streak;
+            alert(`Great job! You completed all "${total}" habits today!`);
+        } else {
+            streak =0;
+            localStorage.setItem("streak", 0);
+            streakDisplay.textContent = streak;
+            alert("You missed some habits. Streak reset.");
+        }
+    }
+
+
 </script>
 </body>
 </html>
